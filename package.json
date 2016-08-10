@@ -25,9 +25,5 @@
     "url": "https://github.com/SiarheiMelnik/try-serverless/issues"
   },
   "homepage": "https://github.com/SiarheiMelnik/try-serverless/issues#readme",
-  "scripts": {},
-  "_npmOperationalInternal": {
-    "host": "packages-12-west.internal.npmjs.com",
-    "tmp": "tmp/serverless-graphql-0.0.4.tgz_1460768832694_0.5603838413953781"
-  }
+  "scripts": {}
 }
