@@ -26,7 +26,6 @@ module.exports = {
               "syntax-class-properties",
               "syntax-decorators",
               "syntax-object-rest-spread",
-
               "transform-class-properties",
               "transform-object-rest-spread"
             ]
