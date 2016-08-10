@@ -64,6 +64,7 @@ export function getUsers() {
 
   return (dispatch) => fetch(`${API_URL}/data/`, {
     method: 'POST',
+    mode: 'cors',
     body: JSON.stringify(query)
   })
   .then(response => response.json())
@@ -93,6 +94,7 @@ export function getUser(username) {
 
   return (dispatch) => fetch(`${API_URL}/data/`, {
     method: 'POST',
+    mode: 'cors',
     body: JSON.stringify(query)
   })
   .then(response => response.json())
@@ -127,6 +129,7 @@ export function updateUser(user) {
 
   return (dispatch) => fetch(`${API_URL}/data/`, {
     method: 'POST',
+    mode: 'cors',
     body: JSON.stringify(query)
   })
   .then(response => response.json())
@@ -152,6 +155,7 @@ export function deleteUser(token) {
 
   return (dispatch) => fetch(`${API_URL}/data/`, {
     method: 'POST',
+    mode: 'cors',
     body: JSON.stringify(query)
   })
   .then(response => response.json())
@@ -187,6 +191,7 @@ export function loginUser(user) {
 
     return fetch(`${API_URL}/data/`, {
       method: 'POST',
+      mode: 'cors',
       body: JSON.stringify(query)
     })
     .then(response => response.json())
