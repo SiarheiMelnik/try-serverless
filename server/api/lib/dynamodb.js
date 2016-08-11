@@ -1,6 +1,5 @@
 'user strict';
 
-const Promise = require('bluebird');
 const DynamoDB = require('aws-sdk').DynamoDB;
 
 const dynamoConfig = {

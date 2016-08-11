@@ -1,6 +1,5 @@
 'use strict';
 
-const Promise = require('bluebird');
 const jwt = require('jsonwebtoken');
 
 function authorize(token, requiredPermissions) {

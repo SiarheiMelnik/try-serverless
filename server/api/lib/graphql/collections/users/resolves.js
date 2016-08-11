@@ -1,6 +1,5 @@
 'use strict';
 
-const Promise = require('bluebird');
 const uuid = require('uuid');
 const bcryptjs = require('bcryptjs');
 const db = require('../../../dynamodb');

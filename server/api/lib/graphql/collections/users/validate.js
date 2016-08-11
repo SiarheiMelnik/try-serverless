@@ -1,7 +1,5 @@
 'use strict';
 
-const Promise = require('bluebird');
-
 let validate = {
   username: (username) => {
     let re = /^[a-z0-9_-]{3,16}$/;

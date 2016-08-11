@@ -1,5 +1,7 @@
 'use strict';
 
+global.Promise = require('bluebird');
+
 const graphql = require('graphql').graphql;
 const Schema = require('./schema');
 
