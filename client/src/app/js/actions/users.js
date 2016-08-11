@@ -1,4 +1,3 @@
-import 'whatwg-fetch';
 import _ from 'lodash';
 import { push } from 'react-router-redux';
 

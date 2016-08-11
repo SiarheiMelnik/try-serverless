@@ -1,8 +1,10 @@
+
+import './App.scss';
 import React from 'react';
 import { Component } from 'react';
 
-import Error from './shared/error';
-import Header from './shared/header';
+import Error from './shared/Error.react';
+import Header from './shared/Header.react';
 
 export default class App extends Component {
   render() {
