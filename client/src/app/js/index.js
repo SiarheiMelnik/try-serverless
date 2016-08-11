@@ -1,4 +1,4 @@
 require('babel-polyfill');
 require('whatwg-fetch');
-// window.Promise = require('../../../../common/bootstrapBluebird');
+window.Promise = require('./bootstrapBluebird');
 require('./main');
