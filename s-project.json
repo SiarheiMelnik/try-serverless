@@ -16,6 +16,9 @@
         "Authorization",
         "X-Api-Key"
       ]
+    },
+    "webpack": {
+      "configPath": "webpack.config.js"
     }
   },
   "plugins": [
@@ -23,6 +26,7 @@
     "serverless-cors-plugin",
     "serverless-client-s3",
     "serverless-offline",
+    "serverless-webpack-plugin",
     "./plugins/setupdb.js"
   ]
 }

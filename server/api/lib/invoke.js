@@ -1,11 +1,11 @@
 'use strict';
 
 const _ = require('lodash');
-const Lambda = require('aws-sdk').Lambda;
+const { Lambda } = require('aws-sdk');
 
 const lambda = new Lambda({
   region: process.env.SERVERLESS_REGION,
-  sessionToken: process.env.AWS_SESSION_TOKEN
+  sessionToken: process.env.AWS_SESSION_TOKEN,
 });
 
 /**
@@ -22,7 +22,7 @@ module.exports = (name, data, responseHandler) => {
     data = {};
   }
 
-  const FunctionName = process.env.SERVERLESS_PROJECT + '-' + name;
+  const FunctionName = `${process.env.SERVERLESS_PROJECT}-${name}`;
   const InvocationType = responseHandler ? 'RequestResponse' : 'Event';
 
   const params = {
@@ -30,11 +30,11 @@ module.exports = (name, data, responseHandler) => {
     InvocationType,
     LogType: 'None',
     Payload: new Buffer(JSON.stringify(data)),
-    Qualifier: process.env.SERVERLESS_STAGE
+    Qualifier: process.env.SERVERLESS_STAGE,
   };
 
   return Promise
     .fromCallback(cb => lambda.invoke(params, cb))
     .then(reply => reply.Payload ? JSON.parse(reply.Payload) : {})
     .then(responseHandler);
-}
+};

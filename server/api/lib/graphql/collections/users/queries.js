@@ -1,8 +1,6 @@
 'use strict';
 
-const GraphQLList = require('graphql').GraphQLList;
-const GraphQLString = require('graphql').GraphQLString;
-const GraphQLNonNull = require('graphql').GraphQLNonNull;
+const { GraphQLList, GraphQLString, GraphQLNonNull } = require('graphql');
 
 const UserType = require('./type');
 const validate = require('./validate');
@@ -12,18 +10,18 @@ module.exports = {
   users: {
     type: new GraphQLList(UserType),
     description: 'List of users',
-    resolve: function(source, args) {
+    resolve() {
       return resolves.getAll();
-    }
+    },
   },
   user: {
     type: UserType,
     description: 'Get a User by username',
     args: {
-      username: {type: new GraphQLNonNull(GraphQLString)}
+      username: { type: new GraphQLNonNull(GraphQLString) },
     },
-    resolve: function(source, args) {
+    resolve(source, args) {
       return validate(args).then(() => resolves.get(args.username));
-    }
-  }
-}
+    },
+  },
+};

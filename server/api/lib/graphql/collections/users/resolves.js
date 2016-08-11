@@ -3,13 +3,13 @@
 const uuid = require('uuid');
 const bcryptjs = require('bcryptjs');
 const db = require('../../../dynamodb');
-const authenticate = require('../../../auth').authenticate;
-const invoke = require('../../../invoke')
+const { authenticate } = require('../../../auth');
+const invoke = require('../../../invoke');
 const _ = require('lodash');
 
 const stage = process.env.SERVERLESS_STAGE;
 const projectName = process.env.SERVERLESS_PROJECT;
-const usersTable = projectName + '-users-' + stage;
+const usersTable = `${projectName}-users-${stage}`;
 
 module.exports = {
   create(user) {
@@ -23,19 +23,20 @@ module.exports = {
 
     return db('put', {
       TableName: usersTable,
-      Item: user
+      Item: user,
     })
     // let's invoke another lambda asynchronously (don't wait till it finished)!
-    .then(() => invoke('timeout', {user, delay: 70}))  // no actual delay here
+    .then(() => invoke('timeout', { user, delay: 70 }))  // no actual delay here
     // if we pass a callback it will run synchronously, so we'll get a response
-    .then(() => invoke('timeout', {user, delay: 50}, (response) => {
+    .then(() => invoke('timeout', { user, delay: 50 }, (response) => {
       // this should be delayed for 50ms
       // let's do something with the response
       if (response.result === 'success') {
-        console.log("response data:", response);
+        console.log('response data: ', response);
       } else {
-        return Promise.reject(new Error("Something went wrong :("));
+        return Promise.reject(new Error('Something went wrong :('));
       }
+      return Promise.resolve();
     }))
     // finally return the user record
     .then(() => user);
@@ -46,22 +47,22 @@ module.exports = {
     const password = args.password;
 
     return db('get', {
-        TableName: usersTable,
-        Key: {username},
-        AttributesToGet: [
-          'id',
-          'name',
-          'username',
-          'email',
-          'permissions',
-          'password_hash'
-        ]
-      })
+      TableName: usersTable,
+      Key: { username },
+      AttributesToGet: [
+        'id',
+        'name',
+        'username',
+        'email',
+        'permissions',
+        'password_hash',
+      ],
+    })
       .then(reply => {
         const Item = reply.Item;
         if (!Item) return Promise.reject('User not found');
 
-        let match = bcryptjs.compareSync(password, Item.password_hash);
+        const match = bcryptjs.compareSync(password, Item.password_hash);
         if (!match) return Promise.reject('invalid password');
 
         delete Item.password_hash;
@@ -75,13 +76,13 @@ module.exports = {
   get(username) {
     return db('get', {
       TableName: usersTable,
-      Key: {username},
+      Key: { username },
       AttributesToGet: [
         'id',
         'username',
         'name',
-        'email'
-      ]
+        'email',
+      ],
     }).then(reply => reply.Item);
   },
 
@@ -92,13 +93,12 @@ module.exports = {
         'id',
         'username',
         'name',
-        'email'
-      ]
+        'email',
+      ],
     }).then(reply => reply.Items);
   },
 
   update(user, obj) {
-
     // update data
     user.email = obj.email || user.email;
     user.name = obj.name || user.name;
@@ -106,14 +106,14 @@ module.exports = {
 
     return db('put', {
       TableName: usersTable,
-      Item: user
+      Item: user,
     }).then(() => _.merge({}, user, obj));
   },
 
   remove(user) {
     return db('delete', {
       TableName: usersTable,
-      Key: { username: user.username }
+      Key: { username: user.username },
     });
-  }
+  },
 };
