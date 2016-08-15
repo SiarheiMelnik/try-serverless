@@ -12,10 +12,6 @@
     "url": "git://github.com/SiarheiMelnik/try-serverless.git"
   },
   "dependencies": {
-    "aws-sdk": "2.4.14",
-    "jsonwebtoken": "7.1.7",
-    "lodash": "4.14.2",
-    "bluebird": "3.4.1",
     "serverless-client-s3": "2.0.0",
     "serverless-cors-plugin": "0.4.1",
     "serverless-meta-sync": "0.1.0",
