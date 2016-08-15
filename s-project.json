@@ -22,7 +22,6 @@
     "serverless-meta-sync",
     "serverless-cors-plugin",
     "serverless-client-s3",
-    "serverless-offline",
-    "./plugins/setupdb.js"
+    "serverless-offline"
   ]
 }
