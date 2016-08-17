@@ -9,20 +9,7 @@
   "memorySize": 1024,
   "authorizer": {},
   "custom": {
-    "excludePatterns": [],
-    "runtime": {
-      "transforms": [
-        {
-          "name": "babelify",
-          "opts": {
-            "presets": [
-              "es2015"
-            ]
-          }
-        },
-        "bulkify"
-      ]
-    }
+    "excludePatterns": []
   },
   "endpoints": [
     {
