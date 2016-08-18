@@ -1,8 +1,8 @@
 
 import gql from '../lib/graphql';
 
-export default ({ query }, context, cb) => {
+export default ({ query }, context) => {
   gql(query)
-    .then((response) => cb(null, response))
-    .catch((error) => cb(error));
+    .then(res => context.succeed(res))
+    .catch(error => context.fail(error));
 };
