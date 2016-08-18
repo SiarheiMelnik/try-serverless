@@ -20,7 +20,7 @@ module.exports = {
   module: {
     loaders: [
       {
-        test: /\.js?$/,
+        test: /\.js$/,
         loader: 'babel',
         exclude: /node_modules/,
         query: {
@@ -34,7 +34,6 @@ module.exports = {
               polyfill: false,
               regenerator: false,
             }],
-            'add-module-exports',
           ],
         },
       },

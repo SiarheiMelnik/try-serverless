@@ -1,34 +1,36 @@
-'use strict';
 
-const GraphQL = require('graphql')
-const GraphQLObjectType = GraphQL.GraphQLObjectType;
-const GraphQLSchema = GraphQL.GraphQLSchema;
-const _ = require('lodash');
-const queries = {}, mutations = {};
+import {
+  GraphQLObjectType,
+  GraphQLSchema,
+} from 'graphql';
+import _ from 'lodash';
+
+const queries = {};
+const mutations = {};
 
 // add your collections here
 const collections = [
-  'users'
+  'users',
 ];
 
 // load collections queries and muataions
 collections.forEach(name => {
-  _.assign(queries, require(`./collections/${name}/queries`));
-  _.assign(mutations, require(`./collections/${name}/mutations`));
+  _.assign(queries, require(`./collections/${name}/queries`).default);
+  _.assign(mutations, require(`./collections/${name}/mutations`).default);
 });
 
 const Queries = new GraphQLObjectType({
   name: 'Root',
   description: 'Root of the Schema',
-  fields: queries
+  fields: queries,
 });
 
 const Mutations = new GraphQLObjectType({
   name: 'Mutations',
-  fields: mutations
+  fields: mutations,
 });
 
 module.exports = new GraphQLSchema({
   query: Queries,
-  mutation: Mutations
+  mutation: Mutations,
 });

@@ -1,17 +1,17 @@
-'use strict';
+
+import _ from 'lodash';
+import { graphql } from 'graphql';
+import Schema from './schema';
+
 
 global.Promise = require('bluebird');
 
-const graphql = require('graphql').graphql;
-const Schema = require('./schema');
-
-module.exports = (query) => {
-  //
+export default (query) => {
   // patch to allow queries from GraphiQL
   // like the initial introspectionQuery
-  if (query && query.hasOwnProperty('query')) {
-    query = query.query.replace("\n", ' ', "g");
+  if (query && _.has(query, 'query')) {
+    query = query.query.replace('\n', ' ', 'g');
   }
 
   return graphql(Schema, query);
-}
+};

@@ -1,16 +1,17 @@
-'use strict';
 
-const GraphQLObjectType = require('graphql').GraphQLObjectType;
-const GraphQLString = require('graphql').GraphQLString;
+import {
+  GraphQLObjectType,
+  GraphQLString,
+} from 'graphql';
 
-module.exports = new GraphQLObjectType({
+export default new GraphQLObjectType({
   name: 'User',
   description: 'User',
   fields: () => ({
-    id: {type: GraphQLString},
-    username: {type: GraphQLString},
-    name: {type: GraphQLString},
-    email: {type: GraphQLString},
-    token: {type: GraphQLString}
-  })
+    id: { type: GraphQLString },
+    username: { type: GraphQLString },
+    name: { type: GraphQLString },
+    email: { type: GraphQLString },
+    token: { type: GraphQLString },
+  }),
 });

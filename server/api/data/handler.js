@@ -1,8 +1,8 @@
 
-const gql = require('../lib/graphql');
+import gql from '../lib/graphql';
 
-module.exports.handler = (event, context, cb) => {
-  gql(event.query)
+export default ({ query }, context, cb) => {
+  gql(query)
     .then((response) => cb(null, response))
     .catch((error) => cb(error));
 };
