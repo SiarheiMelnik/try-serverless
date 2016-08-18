@@ -13,6 +13,8 @@ module.exports = {
     extensions: ['', '.js'],
   },
   plugins: [
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+    new webpack.optimize.DedupePlugin(),
     new webpack.optimize.OccurenceOrderPlugin(),
   ],
   module: {
