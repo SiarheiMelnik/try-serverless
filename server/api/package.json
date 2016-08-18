@@ -10,12 +10,19 @@
     "url": "git://github.com/SiarheiMelnik/try-serverless.git"
   },
   "dependencies": {
-    "aws-sdk": "2.5.0",
+    "aws-sdk": "2.5.1",
     "bcryptjs": "2.3.0",
     "bluebird": "3.4.1",
     "graphql": "0.6.2",
     "jsonwebtoken": "7.1.9",
     "lodash": "4.15.0",
-    "uuid": "2.0.2"
+    "uuid": "2.0.2",
+    "webpack": "1.13.2"
+  },
+  "devDependencies": {
+    "babel-core": "6.13.2",
+    "babel-loader": "6.2.5",
+    "babel-preset-es2015": "6.13.2",
+    "babel-preset-stage-2": "6.13.0"
   }
 }

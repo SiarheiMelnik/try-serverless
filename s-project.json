@@ -21,6 +21,7 @@
   "plugins": [
     "serverless-meta-sync",
     "serverless-cors-plugin",
-    "serverless-client-s3"
+    "serverless-client-s3",
+    "serverless-webpack-plugin"
   ]
 }

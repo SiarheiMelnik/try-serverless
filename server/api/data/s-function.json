@@ -4,12 +4,15 @@
   "description": "Serverless Lambda function for project: serverless-boilerplate",
   "customName": false,
   "customRole": false,
-  "handler": "data/handler.handler",
+  "handler": "handler.handler",
   "timeout": 6,
   "memorySize": 1024,
   "authorizer": {},
   "custom": {
-    "excludePatterns": []
+    "excludePatterns": [],
+    "webpack": {
+      "configPath": "webpack.config.js"
+    }
   },
   "endpoints": [
     {

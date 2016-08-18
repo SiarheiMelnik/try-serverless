@@ -1,4 +1,3 @@
-'use strict';
 
 module.exports.handler = (event, context, cb) => {
   event.delay = event.delay || 100;

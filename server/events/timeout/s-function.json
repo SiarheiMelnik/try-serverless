@@ -9,7 +9,10 @@
   "memorySize": 1024,
   "authorizer": {},
   "custom": {
-    "excludePatterns": []
+    "excludePatterns": [],
+    "webpack": {
+      "configPath": "webpack.config.js"
+    }
   },
   "endpoints": [],
   "events": [],
