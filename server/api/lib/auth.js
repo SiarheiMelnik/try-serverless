@@ -1,4 +1,5 @@
-import jwt from 'jsonwebtoken';
+
+const jwt = require('jsonwebtoken');
 
 const authorize = (token, requiredPermissions) => {
   let user;
@@ -22,7 +23,7 @@ const authorize = (token, requiredPermissions) => {
 
 const authenticate = (user) => jwt.sign(user, process.env.AUTH_TOKEN_SECRET);
 
-export default {
+module.exports = {
   authenticate,
   authorize,
 };

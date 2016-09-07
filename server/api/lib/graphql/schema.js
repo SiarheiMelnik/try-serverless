@@ -1,9 +1,6 @@
 
-import {
-  GraphQLObjectType,
-  GraphQLSchema,
-} from 'graphql';
-import _ from 'lodash';
+const graphql = require('graphql');
+const _ = require('lodash');
 
 const queries = {};
 const mutations = {};
@@ -19,18 +16,18 @@ collections.forEach(name => {
   _.assign(mutations, require(`./collections/${name}/mutations`).default);
 });
 
-const Queries = new GraphQLObjectType({
+const Queries = new graphql.GraphQLObjectType({
   name: 'Root',
   description: 'Root of the Schema',
   fields: queries,
 });
 
-const Mutations = new GraphQLObjectType({
+const Mutations = new graphql.GraphQLObjectType({
   name: 'Mutations',
   fields: mutations,
 });
 
-module.exports = new GraphQLSchema({
+module.exports = new graphql.GraphQLSchema({
   query: Queries,
   mutation: Mutations,
 });

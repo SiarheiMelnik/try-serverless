@@ -12,11 +12,7 @@
     "url": "git://github.com/SiarheiMelnik/try-serverless.git"
   },
   "dependencies": {
-    "serverless-client-s3": "2.0.0",
-    "serverless-cors-plugin": "0.4.1",
-    "serverless-meta-sync": "0.1.0",
-    "serverless-webpack-plugin": "0.4.5",
-    "webpack": "1.13.2"
+    "serverless-client-s3": "2.0.0"
   },
   "bugs": {
     "url": "https://github.com/SiarheiMelnik/try-serverless/issues"

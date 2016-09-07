@@ -1,6 +1,6 @@
 
-import _ from 'lodash';
-import { Lambda } from 'aws-sdk';
+const _ = require('lodash');
+const Lambda = require('aws-sdk').Lambda;
 
 const lambda = new Lambda({
   region: process.env.SERVERLESS_REGION,
@@ -15,7 +15,7 @@ const lambda = new Lambda({
  * will be RequestResponse (synchronous), otherwise it will be 'Event' (async).
  */
 
-export default (name, data, responseHandler) => {
+module.exports = (name, data, responseHandler) => {
   if (arguments.length === 2 && _.isFunction(arguments[1])) {
     responseHandler = arguments[1];
     data = {};

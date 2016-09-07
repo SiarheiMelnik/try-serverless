@@ -1,12 +1,11 @@
 
-import _ from 'lodash';
-import { graphql } from 'graphql';
-import Schema from './schema';
-
+const _ = require('lodash');
+const graphql = require('graphql').graphql;
+const Schema = require('./schema');
 
 global.Promise = require('bluebird');
 
-export default (query) => {
+module.exports = (query) => {
   // patch to allow queries from GraphiQL
   // like the initial introspectionQuery
   if (query && _.has(query, 'query')) {

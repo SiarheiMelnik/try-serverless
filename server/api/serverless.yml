@@ -1,0 +1,19 @@
+
+service: data
+provider: aws
+functions:
+  graphql:
+    handler: data.handler
+    timeout: 5
+    memory: 128
+    events:
+      - http:
+          path: data
+          method: post
+          request:
+            template:
+              application/json: "{\"query\" : $input.json(\"$\")}"
+      - http:
+          path: schema
+          method: post
+          template: ${file("template.json")}.introspectionQueryRequestTemplate

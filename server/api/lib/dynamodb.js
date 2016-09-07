@@ -1,6 +1,6 @@
 'user strict';
 
-import { DynamoDB } from 'aws-sdk';
+const DynamoDB = require('aws-sdk').DynamoDB;
 
 const dynamoConfig = {
   sessionToken: process.env.AWS_SESSION_TOKEN,
@@ -13,5 +13,5 @@ if (process.env.IS_OFFLINE) {
 
 const client = new DynamoDB.DocumentClient(dynamoConfig);
 
-export default (method, params) =>
+module.exports = (method, params) =>
   Promise.fromCallback(cb => client[method](params, cb));
