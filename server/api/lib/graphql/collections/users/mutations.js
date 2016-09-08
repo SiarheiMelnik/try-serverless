@@ -1,13 +1,13 @@
 
-import {
-  GraphQLString,
-  GraphQLNonNull,
-} from 'graphql';
+const graphql = require('graphql');
 
-import UserType from './type';
-import validate from './validate';
-import { authorize } from '../../../auth';
-import resolves from './resolves';
+const UserType = require('./type');
+const validate = require('./validate');
+const authorize = require('../../../auth').authorize;
+const resolves = require('./resolves');
+
+const GraphQLNonNull = graphql.GraphQLNonNull;
+const GraphQLString = graphql.GraphQLString;
 
 export default {
   createUser: {

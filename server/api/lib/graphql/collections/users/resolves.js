@@ -1,17 +1,17 @@
 
-import uuid from 'uuid';
-import bcryptjs from 'bcryptjs';
-import _ from 'lodash';
-import db from '../../../dynamodb';
-import { authenticate } from '../../../auth';
-import invoke from '../../../invoke';
+const uuid = require('uuid');
+const bcryptjs = require('bcryptjs');
+const _ = require('lodash');
+const db = require('../../../dynamodb');
+const authenticate = require('../../../auth').authenticate;
+const invoke = require('../../../invoke');
 
 const stage = process.env.SERVERLESS_STAGE;
 const projectName = process.env.SERVERLESS_PROJECT;
 
 const usersTable = `${projectName}-users-${stage}`;
 
-export default {
+module.exports = {
   create(user) {
     user.id = uuid.v1();
     user.permissions = ['UPDATE_USER', 'DELETE_USER'];

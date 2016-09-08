@@ -1,15 +1,15 @@
 
-import {
-  GraphQLList,
-  GraphQLString,
-  GraphQLNonNull,
-} from 'graphql';
+const graphql = require('graphql');
 
-import UserType from './type';
-import validate from './validate';
-import resolves from './resolves';
+const UserType = require('./type');
+const validate = require('./validate');
+const resolves = require('./resolves');
 
-export default {
+const GraphQLList = graphql.GraphQLList;
+const GraphQLString = graphql.GraphQLString;
+const GraphQLNonNull = graphql.GraphQLNonNull;
+
+module.exports = {
   users: {
     type: new GraphQLList(UserType),
     description: 'List of users',

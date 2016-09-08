@@ -1,9 +1,15 @@
 
 service: data
-provider: aws
+
+provider:
+  name: aws
+  runtime: nodejs4.3
+  stage: dev
+  region: eu-central-1
+
 functions:
   graphql:
-    handler: data.handler
+    handler: handler.data
     timeout: 5
     memory: 128
     events:
@@ -17,3 +23,63 @@ functions:
           method: post
           request:
             template: ${file(./request-template.json):introspectionQueryRequest}
+
+resources:
+  Resources:
+    IamRoleLambda:
+      Type: AWS::IAM::Role
+      Properties:
+        AssumeRolePolicyDocument:
+          Version: '2012-10-17'
+          Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+              - lambda.amazonaws.com
+            Action:
+            - sts:AssumeRole
+        Path: "/"
+    IamPolicyLambda:
+      Type: AWS::IAM::Policy
+      Properties:
+        PolicyName: ${opt:stage}-${opt:project}-lambda
+        PolicyDocument:
+          Version: '2012-10-17'
+          Statement:
+          - Effect: Allow
+            Action:
+            - logs:CreateLogGroup
+            - logs:CreateLogStream
+            - logs:PutLogEvents
+            Resource: arn:aws:logs:${opt:region}:*:*
+          - Effect: Allow
+            Action:
+            - "*"
+            Resource: arn:aws:dynamodb:${opt:region}:*:table/${opt:project}-users-${opt:stage}
+          - Effect: Allow
+            Action:
+            - lambda:InvokeFunction
+            Resource: "*"
+        Roles:
+        - Ref: IamRoleLambda
+  DynamoDbUsersTable:
+    Type: AWS::DynamoDB::Table
+    DeletionPolicy: Retain
+    Properties:
+      AttributeDefinitions:
+      - AttributeName: username
+        AttributeType: S
+      KeySchema:
+      - AttributeName: username
+        KeyType: HASH
+      ProvisionedThroughput:
+        ReadCapacityUnits: 1
+        WriteCapacityUnits: 1
+      TableName: ${opt:project}-users-${opt:stage}
+  Outputs:
+    IamRoleArnLambda:
+      Description: ARN of the lambda IAM role
+      Value:
+        Fn::GetAtt:
+        - IamRoleLambda
+        - Arn

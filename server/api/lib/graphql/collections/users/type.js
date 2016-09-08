@@ -1,10 +1,10 @@
 
-import {
-  GraphQLObjectType,
-  GraphQLString,
-} from 'graphql';
+const graphql = require('graphql');
 
-export default new GraphQLObjectType({
+const GraphQLObjectType = graphql.GraphQLObjectType;
+const GraphQLString = graphql.GraphQLString;
+
+module.exports = new GraphQLObjectType({
   name: 'User',
   description: 'User',
   fields: () => ({
