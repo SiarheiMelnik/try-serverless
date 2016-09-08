@@ -11,9 +11,9 @@ functions:
           path: data
           method: post
           request:
-            template:
-              application/json: "{\"query\" : $input.json(\"$\")}"
+            template: ${file(./request-template.json):dataQueryRequest}
       - http:
           path: schema
           method: post
-          template: ${file("template.json")}.introspectionQueryRequestTemplate
+          request:
+            template: ${file(./request-template.json):introspectionQueryRequest}
