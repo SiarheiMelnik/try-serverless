@@ -12,7 +12,13 @@
     "url": "git://github.com/SiarheiMelnik/try-serverless.git"
   },
   "dependencies": {
-    "serverless-client-s3": "2.0.0"
+    "aws-sdk": "2.5.1",
+    "bcryptjs": "2.3.0",
+    "bluebird": "3.4.1",
+    "graphql": "0.6.2",
+    "jsonwebtoken": "7.1.9",
+    "lodash": "4.15.0",
+    "uuid": "2.0.2"
   },
   "bugs": {
     "url": "https://github.com/SiarheiMelnik/try-serverless/issues"
